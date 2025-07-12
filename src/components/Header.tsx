@@ -10,16 +10,13 @@ interface HeaderProps {
   setCollapsed: (collapsed: boolean) => void;
 }
 
-const Header = ({ collapsed, setCollapsed }: HeaderProps) => {
-  const headerColor =
-    (import.meta.env && import.meta.env.VITE_HEADER_COLOR
-      ? import.meta.env.VITE_HEADER_COLOR
-      : '#1677FF'
-    ).toLowerCase().trim();
+const Header: React.FC<HeaderProps> = ({ collapsed, setCollapsed }) => {
+  const headerColor = (
+    import.meta.env?.VITE_HEADER_COLOR ?? '#1677FF'
+  ).toLowerCase().trim();
 
-  // Decide tooltip text based on header color
   const tooltipText =
-    headerColor === '#bc204b' ? 'Production Environment' : 'Test Environment' ;
+    headerColor === '#bc204b' ? 'Production Environment' : 'Test Environment';
 
   return (
     <AntHeader
@@ -33,8 +30,13 @@ const Header = ({ collapsed, setCollapsed }: HeaderProps) => {
     >
       <Tooltip title={tooltipText}>
         <div
+          role="button"
+          tabIndex={0}
           onClick={() => setCollapsed(!collapsed)}
-          style={{ cursor: 'pointer', color: 'white', padding: '4px' }}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') setCollapsed(!collapsed);
+          }}
+          style={{ cursor: 'pointer', color: 'white', padding: 4 }}
           aria-label="Toggle Sidebar"
         >
           {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
