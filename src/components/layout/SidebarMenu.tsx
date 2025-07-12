@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu } from 'antd';
 import {
-  UserOutlined,
   DashboardOutlined,
   InfoCircleOutlined,
   CalendarOutlined,
@@ -11,45 +10,35 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 const { SubMenu } = Menu;
 
-const SidebarMenu = () => {
+const pathToKey: Record<string, string> = {
+  '/applications': '/applications/app-links',
+  '/applications/app-links': '/applications/app-links',
+  '/applications/service-links': '/applications/service-links',
+  '/metrics': '/metrics',
+  '/events': '/events',
+};
+
+const getOpenKeys = (key: string) => (key.startsWith('/applications') ? ['applications'] : []);
+
+const SidebarMenu: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const { pathname } = useLocation();
   const { theme } = useTheme();
 
-  // Map route paths to menu item keys
-  const pathToKey = {
-    '/applications': '/applications/app-links',  // redirect default to app-links
-    '/applications/app-links': '/applications/app-links',
-    '/applications/service-links': '/applications/service-links',
-    '/metrics': '/metrics',
-    '/events': '/events',
-  };
-
-  // Get selected key from current path
-  const selectedKey = pathToKey[location.pathname] || '';
-
-  // Determine open submenu keys based on selected key
-  const getOpenKeys = (key: string) => {
-    if (key.startsWith('/applications')) return ['applications'];
-    return [];
-  };
-
+  const selectedKey = pathToKey[pathname] || '';
   const [openKeys, setOpenKeys] = useState<string[]>(getOpenKeys(selectedKey));
 
-  // Update openKeys when location changes
   useEffect(() => {
     setOpenKeys(getOpenKeys(selectedKey));
   }, [selectedKey]);
 
-  const onOpenChange = (keys: string[]) => {
-    setOpenKeys(keys);
-  };
+  const onOpenChange = (keys: string[]) => setOpenKeys(keys);
 
   return (
     <Menu
       mode="inline"
       theme={theme === 'dark' ? 'dark' : 'light'}
-      selectedKeys={[selectedKey]}
+      selectedKeys={selectedKey ? [selectedKey] : []}
       openKeys={openKeys}
       onOpenChange={onOpenChange}
       onClick={({ key }) => navigate(key)}
