@@ -1,0 +1,27 @@
+/* light theme */
+body[data-theme='light'] {
+  --bg: #ffffff;
+  --text: #000000;
+  --card-bg: #f9f9f9;
+}
+
+/* dark theme */
+body[data-theme='dark'] {
+  --bg: #141414;
+  --text: #f0f0f0;
+  --card-bg: #1f1f1f;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.ant-layout {
+  background-color: var(--bg);
+}
+
+.ant-card {
+  background-color: var(--card-bg);
+  color: var(--text);
+}
