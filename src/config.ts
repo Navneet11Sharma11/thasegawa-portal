@@ -15,6 +15,11 @@ export const getStatusColor = (status: StatusType): string => {
   }
 };
 
+export const HEADER_COLORS = {
+  '#bc204b': 'Production Environment',
+  '#1677ff': 'Test Environment',
+};
+
 export const formatStatus = (status: StatusType): string => {
   return (
     {

@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout, Tooltip } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import UserDropdown from './UserDropdown';
+import { HEADER_COLORS } from '@/config';
 
 const { Header: AntHeader } = Layout;
 
@@ -11,12 +12,11 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ collapsed, setCollapsed }) => {
-  const headerColor = (
-    import.meta.env?.VITE_HEADER_COLOR ?? '#1677FF'
-  ).toLowerCase().trim();
+  const headerColor = (import.meta.env?.VITE_HEADER_COLOR ?? '#1677FF')
+    .toLowerCase()
+    .trim();
 
-  const tooltipText =
-    headerColor === '#bc204b' ? 'Production Environment' : 'Test Environment';
+  const tooltipText = HEADER_COLORS[headerColor] ?? 'Unknown Environment';
 
   return (
     <AntHeader
