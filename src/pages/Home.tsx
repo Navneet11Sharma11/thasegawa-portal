@@ -9,7 +9,7 @@ const Home = () => {
     <div>
       <Title level={2}>Welcome to {config.appName}</Title>
       <Row gutter={[16, 16]}>
-        {config.subsites.map((site) => (
+        {config.subsites.apps.map((site) => (
           <Col key={site.key} xs={24} sm={12} md={8} lg={6}>
             <Card
               title={site.name}

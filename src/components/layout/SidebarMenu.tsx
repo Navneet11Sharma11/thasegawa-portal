@@ -47,7 +47,7 @@ const SidebarMenu = () => {
   return (
     <Menu
       mode="inline"
-      theme={theme}
+      theme={theme === 'dark' ? 'dark' : 'light'}
       selectedKeys={[selectedKey]}
       openKeys={openKeys}
       onOpenChange={onOpenChange}

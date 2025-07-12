@@ -1,6 +1,5 @@
 import React from 'react';
 import { Layout } from 'antd';
-import { useLocation, useNavigate } from 'react-router-dom';
 import AppHeader from './AppHeader';
 import DynamicBreadcrumb from '../DynamicBreadcrumb';
 import SidebarMenu from './SidebarMenu';
@@ -21,7 +20,7 @@ const AppLayout = ({ children }) => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider
+      <Sider theme={theme === 'dark' ? 'dark' : 'light'}
         collapsible
         collapsed={collapsed}
         onCollapse={setCollapsed}
@@ -30,7 +29,6 @@ const AppLayout = ({ children }) => {
           color: '#000',
           borderRight: '1px solid #e5e5e5', // Optional border between sidebar and content
         }}
-        theme={theme}
         width={240} // can adjust width here
       >
         <SidebarLogo collapsed={collapsed} />

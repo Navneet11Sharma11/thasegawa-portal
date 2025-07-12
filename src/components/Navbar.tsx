@@ -14,7 +14,7 @@ const Navbar = () => {
     <Menu theme="dark" mode="horizontal" selectedKeys={[location.pathname]}>
       {/* Applications */}
       <Menu.SubMenu key="apps" title="Applications" icon={<AppstoreOutlined />}>
-        {config.subsites.map((site) => (
+        {config.subsites.apps.map((site) => (
           <Menu.Item key={site.key}>
             <a href={site.path} target="_blank" rel="noopener noreferrer">
               {site.name}
@@ -35,7 +35,7 @@ const Navbar = () => {
 
       {/* Microservices */}
       <Menu.SubMenu key="microservices" title="Microservices" icon={<ClusterOutlined />}>
-        {config.microservices.map((service) => (
+       {config.subsites.microservices.map((service) => (
           <Menu.Item key={service.key}>
             <a href={service.path} target="_blank" rel="noopener noreferrer">
               {service.name}

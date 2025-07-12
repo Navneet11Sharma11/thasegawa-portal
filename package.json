@@ -16,6 +16,8 @@
     "@fullcalendar/interaction": "^6.1.18",
     "@fullcalendar/react": "^6.1.18",
     "antd": "^5.26.4",
+    "date-holidays": "^3.24.4",
+    "ical.js": "^2.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.3",

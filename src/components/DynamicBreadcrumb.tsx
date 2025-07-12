@@ -33,7 +33,8 @@ const DynamicBreadcrumb = () => {
 
   // Always start breadcrumb with Home
   const breadcrumbItems = [
-    <Breadcrumb.Item key="home" icon={<HomeOutlined />}>
+    <Breadcrumb.Item key="home">
+      <HomeOutlined style={{ marginRight: 4 }} />
       <Link to="/">Home</Link>
     </Breadcrumb.Item>,
   ].concat(extraBreadcrumbItems);
