@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Col, Row, Tooltip } from 'antd';
 import { ExportOutlined, CopyOutlined } from '@ant-design/icons';
 import { useTheme } from '../../context/ThemeContext';
@@ -20,8 +20,14 @@ interface CardGridProps {
 const CardGrid: React.FC<CardGridProps> = ({ items }) => {
   const { theme } = useTheme();
 
-  const handleCopy = (url: string) => {
-    navigator.clipboard.writeText(url);
+  // Track which card's URL was copied
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
+
+  const handleCopy = (url: string, key: string) => {
+    navigator.clipboard.writeText(url).then(() => {
+      setCopiedKey(key);
+      setTimeout(() => setCopiedKey(null), 2000); // reset tooltip after 2 seconds
+    });
   };
 
   const formatDate = (dateStr?: string) => {
@@ -38,7 +44,6 @@ const CardGrid: React.FC<CardGridProps> = ({ items }) => {
     <Row gutter={[24, 24]}>
       {items.map((item) => (
         <Col key={item.key} xs={24} sm={12} md={8} lg={6}>
-
           <Card
             className={`app-card ${theme === 'dark' ? 'dark-card' : ''}`}
             hoverable
@@ -73,7 +78,7 @@ const CardGrid: React.FC<CardGridProps> = ({ items }) => {
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
-                    maxWidth: 200, // optional: adjust width to fit layout
+                    maxWidth: 200,
                   }}
                 >
                   {item.title}
@@ -113,11 +118,11 @@ const CardGrid: React.FC<CardGridProps> = ({ items }) => {
             </Tooltip>
 
             {/* Copy icon - top right */}
-            <Tooltip title="Copy URL">
+            <Tooltip title={copiedKey === item.key ? 'Copied URL' : 'Copy URL'}>
               <CopyOutlined
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleCopy(item.url);
+                  handleCopy(item.url, item.key);
                 }}
                 style={{
                   position: 'absolute',
