@@ -4,7 +4,7 @@ import {
   UserOutlined,
   LogoutOutlined,
 } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const { Text } = Typography;
 
@@ -26,7 +26,7 @@ const UserDropdown = () => {
   const menu = (
     <Menu>
       <Menu.Item key="profile" icon={<UserOutlined />}>
-        Edit Profile
+         <Link to="/profile">View Profile</Link>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={handleLogout}>

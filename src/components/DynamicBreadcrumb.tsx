@@ -12,6 +12,7 @@ const breadcrumbNameMap: Record<string, string> = {
   '/applications/app-links': 'App Links',
   '/applications/service-links': 'Service Links',
   '/microservices': 'MicroServices',
+  '/profile': 'profile',
   // Add more paths and labels as needed
 };
 

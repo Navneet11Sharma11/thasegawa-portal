@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Menu } from 'antd';
 import {
+  UserOutlined,
   DashboardOutlined,
-  ClusterOutlined,
   InfoCircleOutlined,
   CalendarOutlined,
 } from '@ant-design/icons';
@@ -15,6 +15,7 @@ const SidebarMenu = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { theme } = useTheme();
+
   // Map route paths to menu item keys
   const pathToKey = {
     '/applications': '/applications/app-links',  // redirect default to app-links
