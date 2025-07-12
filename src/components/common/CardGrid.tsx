@@ -19,14 +19,14 @@ interface CardGridProps {
 
 const CardGrid: React.FC<CardGridProps> = ({ items }) => {
   const { theme } = useTheme();
-
-  // Track which card's URL was copied
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
+
+  const isDark = theme === 'dark';
 
   const handleCopy = (url: string, key: string) => {
     navigator.clipboard.writeText(url).then(() => {
       setCopiedKey(key);
-      setTimeout(() => setCopiedKey(null), 2000); // reset tooltip after 2 seconds
+      setTimeout(() => setCopiedKey(null), 2000);
     });
   };
 
@@ -40,12 +40,15 @@ const CardGrid: React.FC<CardGridProps> = ({ items }) => {
     });
   };
 
+  const textColor = isDark ? '#eee' : '#111';
+  const iconColor = isDark ? '#ccc' : '#888';
+
   return (
     <Row gutter={[24, 24]}>
       {items.map((item) => (
         <Col key={item.key} xs={24} sm={12} md={8} lg={6}>
           <Card
-            className={`app-card ${theme === 'dark' ? 'dark-card' : ''}`}
+            className={`app-card ${isDark ? 'dark-card' : ''}`}
             hoverable
             style={{
               position: 'relative',
@@ -56,16 +59,16 @@ const CardGrid: React.FC<CardGridProps> = ({ items }) => {
               cursor: 'pointer',
             }}
           >
-            {/* Title with status dot - top left */}
+            {/* Title + status */}
             <div
               style={{
                 position: 'absolute',
                 top: 12,
                 left: 12,
-                right: 48, // space for copy icon
+                right: 48,
                 display: 'flex',
                 alignItems: 'center',
-                gap: 8, // space between title and dot
+                gap: 8,
                 overflow: 'hidden',
               }}
             >
@@ -74,7 +77,7 @@ const CardGrid: React.FC<CardGridProps> = ({ items }) => {
                   style={{
                     fontWeight: 'bold',
                     fontSize: 16,
-                    color: theme === 'dark' ? '#eee' : '#111',
+                    color: textColor,
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
@@ -89,7 +92,6 @@ const CardGrid: React.FC<CardGridProps> = ({ items }) => {
                 <Tooltip title={`Status: ${formatStatus(item.status)}`}>
                   <span
                     style={{
-                      display: 'inline-block',
                       width: 10,
                       height: 10,
                       borderRadius: '50%',
@@ -101,7 +103,7 @@ const CardGrid: React.FC<CardGridProps> = ({ items }) => {
               )}
             </div>
 
-            {/* Last updated - bottom left */}
+            {/* Last updated */}
             <Tooltip title="Last updated date">
               <div
                 style={{
@@ -117,7 +119,7 @@ const CardGrid: React.FC<CardGridProps> = ({ items }) => {
               </div>
             </Tooltip>
 
-            {/* Copy icon - top right */}
+            {/* Copy URL */}
             <Tooltip title={copiedKey === item.key ? 'Copied URL' : 'Copy URL'}>
               <CopyOutlined
                 onClick={(e) => {
@@ -129,14 +131,14 @@ const CardGrid: React.FC<CardGridProps> = ({ items }) => {
                   top: 12,
                   right: 12,
                   fontSize: 16,
-                  color: theme === 'dark' ? '#ccc' : '#888',
+                  color: iconColor,
                   cursor: 'pointer',
                   zIndex: 10,
                 }}
               />
             </Tooltip>
 
-            {/* External link - bottom right */}
+            {/* External link */}
             <Tooltip title="Open in new tab">
               <a
                 href={item.url}
@@ -148,7 +150,7 @@ const CardGrid: React.FC<CardGridProps> = ({ items }) => {
                   bottom: 12,
                   right: 12,
                   fontSize: 16,
-                  color: theme === 'dark' ? '#ccc' : '#888',
+                  color: iconColor,
                   zIndex: 10,
                 }}
               >

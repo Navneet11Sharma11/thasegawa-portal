@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, ReactNode } from 'react';
 import { Layout } from 'antd';
 import AppHeader from './AppHeader';
 import DynamicBreadcrumb from '../DynamicBreadcrumb';
@@ -8,9 +8,16 @@ import { useTheme } from '../../context/ThemeContext';
 
 const { Sider, Content } = Layout;
 
-const AppLayout = ({ children }) => {
-  const [collapsed, setCollapsed] = React.useState(false);
+interface AppLayoutProps {
+  children: ReactNode;
+}
+
+const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
+  const [collapsed, setCollapsed] = useState(false);
   const { theme } = useTheme();
+
+  const isDark = theme === 'dark';
+  const antTheme: 'light' | 'dark' = isDark ? 'dark' : 'light';
 
   const user = {
     name: 'Navneet Sharma',
@@ -19,23 +26,20 @@ const AppLayout = ({ children }) => {
   };
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider theme={theme === 'dark' ? 'dark' : 'light'}
+    <Layout className={antTheme} style={{ minHeight: '100vh' }}>
+      <Sider
+        theme={antTheme}
         collapsible
         collapsed={collapsed}
         onCollapse={setCollapsed}
-        style={{
-          background: '#f5f5f5',
-          color: '#000',
-          borderRight: '1px solid #e5e5e5', // Optional border between sidebar and content
-        }}
-        width={240} // can adjust width here
+        style={{ borderRight: '1px solid #e5e5e5' }}
+        width={240}
       >
         <SidebarLogo collapsed={collapsed} />
         <SidebarMenu />
       </Sider>
 
-      <Layout style={{ background: '#fff', paddingLeft: 16 }}> {/* <-- This adds space between Sider and Content */}
+      <Layout className={antTheme}>
         <AppHeader
           collapsed={collapsed}
           toggleCollapsed={() => setCollapsed(!collapsed)}
@@ -43,10 +47,14 @@ const AppLayout = ({ children }) => {
         />
         <DynamicBreadcrumb />
 
-        <Content style={{
-          margin: '0 16px 16px', padding: '16px', minHeight: 280, background: 'var(--bg-color)', // ✅ dynamic color
-          color: 'var(--text-color)',
-        }}>
+        <Content
+          className={antTheme}
+          style={{
+            margin: '0 16px 16px',
+            padding: 16,
+            minHeight: 280,
+          }}
+        >
           {children}
         </Content>
       </Layout>

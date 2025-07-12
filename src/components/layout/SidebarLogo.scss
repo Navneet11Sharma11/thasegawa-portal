@@ -1,0 +1,20 @@
+.sidebar-logo {
+  height: 64px;
+  margin: 16px;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+
+  &.dark {
+    color: #fff;
+  }
+
+  &.light {
+    color: #000;
+  }
+
+  .logo-image {
+    height: 32px;
+  }
+}
