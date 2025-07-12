@@ -9,7 +9,7 @@ const Applications = () => {
   const [viewMode, setViewMode] = useState<'card' | 'table'>('card');
   const [searchTerm, setSearchTerm] = useState('');
   const { theme } = useTheme();
-  const sortedSubsites = [...config.subsites].sort((a, b) =>
+  const sortedSubsites = [...config.subsites.apps].sort((a, b) =>
     a.name.localeCompare(b.name)
   );
 
@@ -25,6 +25,8 @@ const Applications = () => {
     title: site.name,
     url: site.path,
     description: site.description,
+    lastUpdated: site.lastUpdated,
+    status: site.status,
   }));
 
   const columns = [
@@ -49,6 +51,11 @@ const Applications = () => {
       title: 'Description',
       dataIndex: 'description',
       key: 'description',
+    },
+    {
+      title: 'Last Updated',
+      dataIndex: 'lastUpdated',
+      key: 'lastUpdated',
     },
   ];
 

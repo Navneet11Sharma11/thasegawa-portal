@@ -11,7 +11,7 @@ const MicroService = () => {
   const { theme } = useTheme();
   const sortedMicroservices = useMemo(
     () =>
-      [...config.microservices].sort((a, b) =>
+      [...config.subsites.microservices].sort((a, b) =>
         a.name.localeCompare(b.name)
       ),
     []
@@ -32,6 +32,8 @@ const MicroService = () => {
     title: svc.name,
     description: svc.description,
     url: svc.path,
+    lastUpdated: svc.lastUpdated,
+    status: svc.status,
   }));
 
   const columns = [
@@ -55,6 +57,11 @@ const MicroService = () => {
       title: 'Description',
       dataIndex: 'description',
       key: 'description',
+    },
+    {
+      title: 'Last Updated',
+      dataIndex: 'lastUpdated',
+      key: 'lastUpdated',
     },
   ];
 
