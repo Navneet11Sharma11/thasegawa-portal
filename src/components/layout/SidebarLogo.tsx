@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
+import { Link } from 'react-router-dom';
 import './SidebarLogo.scss';
 
 interface SidebarLogoProps {
@@ -11,9 +12,7 @@ const SidebarLogo: React.FC<SidebarLogoProps> = ({ collapsed }) => {
   const isDark = theme === 'dark';
 
   return (
-    <div
-      className={`sidebar-logo ${isDark ? 'dark' : 'light'}`}
-    >
+    <Link to="/" className={`sidebar-logo ${isDark ? 'dark' : 'light'}`} style={{ display: 'flex', alignItems: 'center' }}>
       <img
         src="/T-Hasegawa-Fav.png"
         alt="Logo"
@@ -21,7 +20,7 @@ const SidebarLogo: React.FC<SidebarLogoProps> = ({ collapsed }) => {
         style={{ marginRight: collapsed ? 0 : 8 }}
       />
       {!collapsed && 'Thasegawa'}
-    </div>
+    </Link>
   );
 };
 

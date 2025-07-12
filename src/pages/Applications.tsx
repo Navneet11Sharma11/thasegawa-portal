@@ -62,8 +62,8 @@ const Applications = () => {
   return (
     <div>
       <Row justify="space-between" align="middle" style={{ marginBottom: 16 }}>
-        <Col flex="auto" style={{ maxWidth: 300 }}>
-          <Input className={theme === 'dark' ? 'dark-input' : ''}
+        <Col flex="auto" style={{ maxWidth: 300 }} className={theme === 'dark' ? 'dark' : 'light'}>
+          <Input
             placeholder="Search applications..."
             prefix={<SearchOutlined />}
             value={searchTerm}

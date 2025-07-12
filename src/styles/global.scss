@@ -97,3 +97,28 @@ body {
     color: #fff !important;
   }
 }
+
+.dark .ant-input {
+  background-color: #1f1f1f;
+  border-color: #434343;
+  color: #fff;              /* Make text visible */
+}
+
+.dark .ant-input::placeholder {
+  color: #888;
+}
+
+.dark .ant-input-affix-wrapper {
+  background-color: #1f1f1f;
+  border-color: #434343;
+  color: #fff;              /* Also set text color here */
+}
+
+.dark .ant-input-affix-wrapper input {
+  color: #fff;              /* This ensures user-typed text is white */
+}
+
+.dark .ant-input-affix-wrapper:hover,
+.dark .ant-input-affix-wrapper-focused {
+  border-color: #1677ff;
+}
