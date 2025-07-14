@@ -4,6 +4,7 @@ import {
   DashboardOutlined,
   InfoCircleOutlined,
   CalendarOutlined,
+  FileTextOutlined,
 } from '@ant-design/icons';
 import { useTheme } from '../../context/ThemeContext';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -14,8 +15,9 @@ const pathToKey: Record<string, string> = {
   '/applications': '/applications/app-links',
   '/applications/app-links': '/applications/app-links',
   '/applications/service-links': '/applications/service-links',
-  '/metrics': '/metrics',
+  '/monitoring': '/monitoring',
   '/events': '/events',
+  '/logging': '/logging',
 };
 
 const getOpenKeys = (key: string) => (key.startsWith('/applications') ? ['applications'] : []);
@@ -48,11 +50,12 @@ const SidebarMenu: React.FC = () => {
         <Menu.Item key="/applications/app-links">App Links</Menu.Item>
         <Menu.Item key="/applications/service-links">Service Links</Menu.Item>
       </SubMenu>
-
-      <Menu.Item key="/metrics" icon={<InfoCircleOutlined />}>
+      <Menu.Item key="/monitoring" icon={<InfoCircleOutlined />}>
         Monitoring
       </Menu.Item>
-
+      <Menu.Item key="/logging" icon={<FileTextOutlined />}>
+        Logs
+      </Menu.Item>
       <Menu.Item key="/events" icon={<CalendarOutlined />}>
         Events
       </Menu.Item>

@@ -5,13 +5,14 @@ import { HomeOutlined } from '@ant-design/icons';
 // Map specific paths to breadcrumb names
 const breadcrumbNameMap: Record<string, string> = {
   '/': 'Home',
-  '/metrics': 'Metrics',
+  '/monitoring': 'Monitoring',
   '/events': 'Events',
   '/applications': 'Applications',
   '/applications/app-links': 'App Links',
   '/applications/service-links': 'Service Links',
   '/microservices': 'MicroServices',
   '/profile': 'Profile',
+  '/logging': 'Logs',
   // Add more paths and labels as needed
 };
 

@@ -19,7 +19,7 @@ const SidebarLogo: React.FC<SidebarLogoProps> = ({ collapsed }) => {
         className="logo-image"
         style={{ marginRight: collapsed ? 0 : 8 }}
       />
-      {!collapsed && 'Thasegawa'}
+     {!collapsed && <span style={{ color: '#BC204B', fontSize: '0.85rem' }}>T. HASEGAWA USA INC.</span>}
     </Link>
   );
 };

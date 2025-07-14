@@ -7,6 +7,8 @@ import MicroService from './pages/MicroServices';
 import Applications from './pages/Applications';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
+import Monitoring from './pages/Monitoring';
+import ErrorLogs from './pages/ErrorLogs';
 
 const App = () => (
   <Routes>
@@ -24,7 +26,9 @@ const App = () => (
             <Route path="/applications/app-links" element={<Applications />} />
             <Route path="/applications/service-links" element={<MicroService />} />
             <Route path="/metrics" element={<Metrics />} />
+            <Route path="/monitoring" element={<Monitoring />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/logging" element={<ErrorLogs />} />
           </Routes>
         </AppLayout>
       }

@@ -1,47 +1,31 @@
-/* Apply background color to day cells with a holiday event */
-.fc-daygrid-day.fc-day {
-  &.fc-holiday-cell {
-    background-color: #FFDC28 !important; // Bold golden yellow
-  }
+/* Highlight day cells */
+.fc-daygrid-day.fc-holiday-cell {
+  background-color: #FFEB99 !important;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px #f4c400;
 }
 
-// Ensure holiday events also have no background if needed
+/* Holiday event wrapper */
 .fc-holiday-event {
-  background: #fff3c4 !important;
-  border: 0 0 0 1px !important;
-
-  .fc-event-main {
-    font-weight: bold;
-    color: #b28a17; // Optional darker text
-    justify-content: center;
-    display: flex;
-  }
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
 }
 
-.fc-holiday-frame {
-  background-color: #fff3c4 !important; // Light yellow, change as needed
-  border-radius: 6px;
-  box-shadow: inset 0 0 0 1px #e8b500;
-}
-
-/* Highlight entire cell background if it's a holiday */
-.fc-holiday-day {
-  background-color: #fff3c4 !important; // Or use #FFDC28 for bold yellow
-  border-radius: 6px;
-  box-shadow: inset 0 0 0 1px #e8b500;
-}
-
-/* Optional: style holiday event text */
-.fc-holiday-event .fc-event-main {
+/* Holiday event text styling */
+.fc-holiday-text {
   font-weight: bold;
+  font-size: 0.85rem;
+  word-wrap: break-word;
+  white-space: normal;
   color: #b28a17;
-  display: flex;
-  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+  display: block;
 }
 
-
-/* FullCalendar toolbar button light theme */
-.fc .fc-button, 
+/* Buttons */
+.fc .fc-button,
 .fc .fc-button-primary {
   background: #e6f4ff !important;
   color: #1677ff !important;
@@ -49,8 +33,8 @@
   box-shadow: none !important;
 }
 
-.fc .fc-button-active, 
-.fc .fc-button-primary:active, 
+.fc .fc-button-active,
+.fc .fc-button-primary:active,
 .fc .fc-button-primary:focus {
   background: #bae0ff !important;
   color: #1677ff !important;

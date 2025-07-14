@@ -107,7 +107,7 @@ const Login: React.FC = () => {
                         }}
                     >
                         <LoginOutlined />
-                        <span>Thasegawa Portal</span>
+                        <span>T. Hasegawa Portal</span>
                     </div>
                 </div>
 
